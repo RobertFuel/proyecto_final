@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Crear Tarea</h1>
-<form action="/crear_tarea/" method="post">
+<form action="/tareas/crear_tarea/" method="post">
     {% csrf_token %}
     {{form.as_p}}
     <button>

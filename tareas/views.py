@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import TareaForm
+from .models import Tarea
 
 
 def home(request):
@@ -36,10 +37,22 @@ def signup(request):
     return render(request, 'tareas/signup.html', {'form': UserCreationForm})
 
 def tareas(request):
-    return render(request, 'tareas/tareas.html')
+    tareas = Tarea.objects.all()
+    return render(request, 'tareas/tareas.html', {'tareas': tareas})
 
 def crear_tarea(request):
-    return render(request, 'tareas/crear_tarea.html', {'form': TareaForm})
+    
+    if request.method == "GET":
+        return render(request, 'tareas/crear_tarea.html', {'form': TareaForm})
+    else:
+        try:
+            form = TareaForm(request.POST)
+            new_tarea = form.save(commit=False)
+            new_tarea.usuario = request.user
+            new_tarea.save()
+            return redirect('tareas')
+        except ValueError:
+            return render(request, 'tareas/crear_tarea.html', {'form': TareaForm, 'error': 'Faltan datos'})
 
 def logout_view(request):
     logout(request)

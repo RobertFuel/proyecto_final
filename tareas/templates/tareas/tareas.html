@@ -2,4 +2,12 @@
 
 {% block content %}
     <h1>Tareas</h1>
+
+    <ul>
+    {% for tarea in tareas %}
+        <li>{{tarea.nombre}}</li>
+    {% endfor %}
+    </ul>
+
+
 {% endblock %}
