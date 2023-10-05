@@ -1,0 +1,11 @@
+{% extends 'tareas/base.html' %}
+
+{% block content %}
+<h1>signin</h1>
+<form action="/signin/" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Iniciar sesion
+    </button>
+{% endblock %}
