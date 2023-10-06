@@ -5,7 +5,18 @@
 
     <ul>
     {% for tarea in tareas %}
-        <li>{{tarea.nombre}}</li>
+    <li>
+        <a href="{% url 'detalle_tarea' tarea.id %}">
+        {% if tarea.importante %}
+        <strong>{{tarea.nombre}}</strong>
+        {% else %}
+            {{tarea.nombre}}
+        {% endif %}
+
+        <p>{{tarea.descripcion}}</p>
+        <p>{{tarea.usuario}}</p>
+        </a>
+    </li>
     {% endfor %}
     </ul>
 

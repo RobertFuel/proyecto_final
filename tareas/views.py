@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import TareaForm
 from .models import Tarea
-
+from django.utils import timezone
 
 def home(request):
     return render(request, 'tareas/home.html')
@@ -37,7 +37,7 @@ def signup(request):
     return render(request, 'tareas/signup.html', {'form': UserCreationForm})
 
 def tareas(request):
-    tareas = Tarea.objects.all()
+    tareas = Tarea.objects.filter(usuario=request.user, fecha_finalizacion__isnull=True)
     return render(request, 'tareas/tareas.html', {'tareas': tareas})
 
 def crear_tarea(request):
@@ -53,6 +53,27 @@ def crear_tarea(request):
             return redirect('tareas')
         except ValueError:
             return render(request, 'tareas/crear_tarea.html', {'form': TareaForm, 'error': 'Faltan datos'})
+        
+def detalle_tarea(request, tarea_id):
+    if request.method == "GET":
+        tarea = get_object_or_404(Tarea, pk=tarea_id, usuario=request.user)
+        form = TareaForm(instance=tarea)
+        return render(request, 'tareas/detalle_tarea.html', {'tarea': tarea, 'form': form})
+    else:
+        try:
+            tarea = get_object_or_404(Tarea, pk=tarea_id, usuario=request.user)
+            form = TareaForm(request.POST, instance=tarea)
+            form.save()
+            return redirect('tareas')
+        except ValueError:
+            return render(request, 'tareas/detalle_tarea.html', {'tarea': tarea, 'form': TareaForm, 'error': 'Error actualizando tarea'})
+
+def completa_tarea(request, tarea_id):
+    tarea = get_object_or_404(Tarea, pk=tarea_id, usuario=request.user)
+    if request.method == "POST":
+        tarea.fecha_finalizacion = timezone.now()
+        tarea.save()
+        return redirect('tareas')
 
 def logout_view(request):
     logout(request)

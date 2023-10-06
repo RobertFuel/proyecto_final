@@ -1,0 +1,24 @@
+{% extends 'tareas/base.html' %}
+
+{% block content %}
+
+<h1>{{tarea.nombre}}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Actualizar Tarea
+    </button>
+</form>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Completar
+    </button>
+
+</form>
+
+{% endblock %}
