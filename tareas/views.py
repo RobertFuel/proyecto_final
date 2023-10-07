@@ -6,6 +6,7 @@ from django.db import IntegrityError
 from .forms import TareaForm
 from .models import Tarea
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, 'tareas/home.html')
@@ -36,10 +37,17 @@ def signup(request):
         
     return render(request, 'tareas/signup.html', {'form': UserCreationForm})
 
+@login_required
 def tareas(request):
     tareas = Tarea.objects.filter(usuario=request.user, fecha_finalizacion__isnull=True)
     return render(request, 'tareas/tareas.html', {'tareas': tareas})
 
+@login_required
+def tareas_completadas(request):
+    tareas = Tarea.objects.filter(usuario=request.user, fecha_finalizacion__isnull=False).order_by('fecha_finalizacion').select_related('curso')
+    return render(request, 'tareas/tareas.html', {'tareas': tareas})
+
+@login_required
 def crear_tarea(request):
     
     if request.method == "GET":
@@ -54,6 +62,7 @@ def crear_tarea(request):
         except ValueError:
             return render(request, 'tareas/crear_tarea.html', {'form': TareaForm, 'error': 'Faltan datos'})
         
+@login_required
 def detalle_tarea(request, tarea_id):
     if request.method == "GET":
         tarea = get_object_or_404(Tarea, pk=tarea_id, usuario=request.user)
@@ -68,13 +77,22 @@ def detalle_tarea(request, tarea_id):
         except ValueError:
             return render(request, 'tareas/detalle_tarea.html', {'tarea': tarea, 'form': TareaForm, 'error': 'Error actualizando tarea'})
 
-def completa_tarea(request, tarea_id):
+@login_required
+def completar_tarea(request, tarea_id):
     tarea = get_object_or_404(Tarea, pk=tarea_id, usuario=request.user)
     if request.method == "POST":
         tarea.fecha_finalizacion = timezone.now()
         tarea.save()
         return redirect('tareas')
 
+@login_required
+def borrar_tarea(request, tarea_id):
+    tarea = get_object_or_404(Tarea, pk=tarea_id, usuario=request.user)
+    if request.method == "POST":
+        tarea.delete()
+        return redirect('tareas')
+
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('home')

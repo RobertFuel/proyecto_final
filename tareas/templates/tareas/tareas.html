@@ -1,24 +1,26 @@
 {% extends 'tareas/base.html' %}
 
 {% block content %}
-    <h1>Tareas</h1>
+    <h1>Tareas Pendientes</h1>
 
     <ul>
     {% for tarea in tareas %}
     <li>
         <a href="{% url 'detalle_tarea' tarea.id %}">
         {% if tarea.importante %}
-        <strong>{{tarea.nombre}}</strong>
+        <strong>{{ tarea.nombre }}</strong>
         {% else %}
-            {{tarea.nombre}}
+            {{ tarea.nombre }}
         {% endif %}
 
-        <p>{{tarea.descripcion}}</p>
-        <p>{{tarea.usuario}}</p>
+        <p>{{ tarea.descripcion }}</p>
+        <p>Curso: {{ tarea.get_curso_display }}</p>
+        <p>Usuario: {{ tarea.usuario }}</p>
+        <p>{{ tarea.fecha_finalizacion|date:'d-m-Y' }}</p>
         </a>
     </li>
     {% endfor %}
     </ul>
-
-
 {% endblock %}
+
+

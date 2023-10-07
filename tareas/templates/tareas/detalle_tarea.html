@@ -12,12 +12,18 @@
     </button>
 </form>
 
-<form method="POST">
+<form action="{% url 'completar_tarea' tarea.id %}" method="POST">
     {% csrf_token %}
-    {{form.as_p}}
     <button>
         Completar
     </button>
+
+<form action="{% url 'borrar_tarea' tarea.id %}" method="POST">
+    {% csrf_token %}
+    <button>
+        Borrar
+    </button>
+
 
 </form>
 

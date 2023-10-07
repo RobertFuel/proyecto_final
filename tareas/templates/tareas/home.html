@@ -1,9 +1,24 @@
 {% extends 'tareas/base.html' %}
 
 {% block content %}
-    <h1>home</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Possimus reiciendis cupiditate aut, distinctio vitae assumenda 
-    non rem saepe iste in pariatur itaque ex fugit eos, temporibus 
-    dolorem natus accusamus deleniti?</p>
+
+<main class="container py-5">
+    <section class="card card-body">
+        <h1 class="display-1 text-center ">Multilingo</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Possimus reiciendis cupiditate aut, distinctio vitae assumenda 
+        non rem saepe iste in pariatur itaque ex fugit eos, temporibus 
+        dolorem natus accusamus deleniti?</p>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <a href="{% url 'signin' %}" class="btn btn-primary btn-lg px-4 me-md-2">
+                Iniciar Sesion
+            </a>
+            <a href="{% url 'signup' %}" class="btn btn-primary btn-lg px-4">
+                Registrarse
+            </a>
+    </section>
+</main>
+
+
 {% endblock %}
