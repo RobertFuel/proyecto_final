@@ -1,12 +1,39 @@
 {% extends 'tareas/base.html' %}
 
 {% block content %}
-<h1>Crear Tarea</h1>
-<form action="/tareas/crear_tarea/" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>
-        Crear Tarea
-    </button>
-</form>
+<main class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Crear Tarea</h1>
+                    <form action="/tareas/crear_tarea/" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.nombre.label_tag }}<br>
+                            {{ form.nombre }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.descripcion.label_tag }}<br>
+                            {{ form.descripcion }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.fecha_finalizacion.label_tag }}
+                            {{ form.fecha_finalizacion }}
+                        </div>
+                        <div class="mb-3 form-check">
+                            {{ form.importante.label_tag }}
+                            {{ form.importante }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.curso.label_tag }}
+                            {{ form.curso }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Crear Tarea</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}

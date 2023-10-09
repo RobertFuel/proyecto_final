@@ -2,23 +2,83 @@
 
 {% block content %}
 
-<main class="container py-5">
-    <section class="card card-body">
-        <h1 class="display-1 text-center ">Multilingo</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Possimus reiciendis cupiditate aut, distinctio vitae assumenda 
-        non rem saepe iste in pariatur itaque ex fugit eos, temporibus 
-        dolorem natus accusamus deleniti?</p>
-
-        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-            <a href="{% url 'signin' %}" class="btn btn-primary btn-lg px-4 me-md-2">
-                Iniciar Sesion
-            </a>
-            <a href="{% url 'signup' %}" class="btn btn-primary btn-lg px-4">
-                Registrarse
-            </a>
-    </section>
+<main class="container-fluid py-5 bg-color">
+    <div class="container text-center text-white">
+        <h1 class="display-1">Multilingo</h1>
+        <p>
+            Explora idiomas, conecta culturas. Tu viaje lingüístico comienza aquí. 🌍🗣️
+        </p>
+    </div>
 </main>
 
+<section class="py-5 border-bottom" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h2 class="h4 fw-bolder">INGLÉS 🇺🇸</h2>
+                <p class="mb-4">Habla el idioma global. Descubre el <strong>inglés</strong> y conquista el mundo.</p>
+                <a href="#" class="btn btn-primary">Inscripción</a>
+            </div>
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h2 class="h4 fw-bolder">ESPAÑOL 🇪🇸</h2>
+                <p class="mb-4">Sumérgete en la riqueza del <strong>español</strong>. Habla con pasión y conecta con el mundo.</p>
+                <a href="#" class="btn btn-danger">Inscripción</a>
+            </div>
+            <div class="col-lg-4">
+                <h2 class="h4 fw-bolder">FRANCÉS 🇫🇷</h2>
+                <p class="mb-4">La belleza del <strong>francés</strong> te espera. Habla con elegancia y explora una nueva cultura.</p>
+                <a href="#" class="btn btn-success">Inscripción</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">¿No tienes una cuenta aún?</h4>
+                        <div class="d-grid gap-2 justify-content-center">
+                            <a href="{% url 'signup' %}" class="btn btn-primary btn-lg px-4">
+                                Registrarse
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">¿Ya tienes cuenta?</h4>
+                        <div class="d-grid gap-2 justify-content-center">
+                            <a href="{% url 'signin' %}" class="btn btn-primary btn-lg px-4 me-md-2">
+                                Iniciar Sesión
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <style>
+        .bg-color {
+            background: linear-gradient(to right, #3498db, #8e44ad);
+            height: 30vh;
+        }
+        
+        
+        #features {
+            margin-top: -8vh; 
+        }
+        
+        #features .container {
+            margin-top: 8vh; 
+        }
+    </style>
 
 {% endblock %}

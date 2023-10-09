@@ -44,7 +44,7 @@ def tareas(request):
 
 @login_required
 def tareas_completadas(request):
-    tareas = Tarea.objects.filter(usuario=request.user, fecha_finalizacion__isnull=False).order_by('fecha_finalizacion').select_related('curso')
+    tareas = Tarea.objects.filter(usuario=request.user, fecha_finalizacion__isnull=False).order_by('fecha_finalizacion')
     return render(request, 'tareas/tareas.html', {'tareas': tareas})
 
 @login_required
