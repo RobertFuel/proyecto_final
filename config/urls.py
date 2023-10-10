@@ -16,19 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tareas import views
+from tareas import views as tareas_views
+from usuarios import views as usuarios_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('signup/', views.signup, name='signup'),
-    path('tareas/', views.tareas, name='tareas'),
-    path('tareas/completadas/', views.tareas_completadas, name='tareas_completadas'),
-    path('tareas/crear_tarea/', views.crear_tarea, name='crear_tarea'),
-    path('tareas/<int:tarea_id>/', views.detalle_tarea, name='detalle_tarea'),
-    path('tareas/<int:tarea_id>/completar', views.completar_tarea, name='completar_tarea'),
-    path('tareas/<int:tarea_id>/borrar', views.borrar_tarea, name='borrar_tarea'),
-    path('logout/', views.logout_view, name='logout'),
-    path('signin/', views.signin, name='signin'),
+    path('', tareas_views.home, name='home'),
+    path('usuarios/signup/', usuarios_views.signup, name='signup'),
+    path('usuarios/logout/', usuarios_views.logout_view, name='logout'),
+    path('usuarios/signin/', usuarios_views.signin, name='signin'),
+    path('tareas/', tareas_views.tareas, name='tareas'),
+    path('tareas/completadas/', tareas_views.tareas_completadas, name='tareas_completadas'),
+    path('tareas/crear_tarea/', tareas_views.crear_tarea, name='crear_tarea'),
+    path('tareas/<int:tarea_id>/', tareas_views.detalle_tarea, name='detalle_tarea'),
+    path('tareas/<int:tarea_id>/completar', tareas_views.completar_tarea, name='completar_tarea'),
+    path('tareas/<int:tarea_id>/borrar', tareas_views.borrar_tarea, name='borrar_tarea'),
+    
 
 ]
