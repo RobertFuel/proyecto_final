@@ -6,29 +6,32 @@
         <div class="col-md-6 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title text-center mb-4">Crear Tarea</h1>
+                    <h1 class="text-center mb-4 card-title display-4 border-bottom pb-3">Crear Tarea</h1>
                     <form action="/tareas/crear_tarea/" method="post">
                         {% csrf_token %}
                         <div class="mb-3">
-                            {{ form.nombre.label_tag }}<br>
-                            {{ form.nombre }}
+                            <label for="{{ form.nombre.id_for_label }}" class="form-label">{{ form.nombre.label }}</label>
+                            <input type="text" class="form-control" id="{{ form.nombre.id_for_label }}" name="{{ form.nombre.name }}">
                         </div>
                         <div class="mb-3">
-                            {{ form.descripcion.label_tag }}<br>
-                            {{ form.descripcion }}
+                            <label for="{{ form.descripcion.id_for_label }}" class="form-label">{{ form.descripcion.label }}</label>
+                            <textarea class="form-control" id="{{ form.descripcion.id_for_label }}" name="{{ form.descripcion.name }}"></textarea>
                         </div>
-                        <div class="mb-3">
-                            {{ form.fecha_finalizacion.label_tag }}
-                            {{ form.fecha_finalizacion }}
-                        </div>
+                        <!-- Checkbox Importante -->
                         <div class="mb-3 form-check">
-                            {{ form.importante.label_tag }}
-                            {{ form.importante }}
+                            <input type="checkbox" class="form-check-input" id="{{ form.importante.id_for_label }}" name="{{ form.importante.name }}" {% if form.importante.value %}checked{% endif %}>
+                            <label class="form-check-label" for="{{ form.importante.id_for_label }}">{{ form.importante.label }}</label>
                         </div>
+                        <!-- Dropdown Curso -->
                         <div class="mb-3">
-                            {{ form.curso.label_tag }}
-                            {{ form.curso }}
+                            <label for="{{ form.curso.id_for_label }}" class="form-label">{{ form.curso.label }}</label>
+                            <select class="form-select" id="{{ form.curso.id_for_label }}" name="{{ form.curso.name }}">
+                                {% for value, display_name in form.curso.field.choices %}
+                                <option value="{{ value }}"{% if form.curso.value == value %} selected{% endif %}>{{ display_name }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
+                        
                         <button type="submit" class="btn btn-primary">Crear Tarea</button>
                     </form>
                 </div>

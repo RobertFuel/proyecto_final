@@ -1,30 +1,44 @@
 {% extends 'tareas/base.html' %}
 
 {% block content %}
+<div class="container mt-5"> <!-- Contenedor general con margen superior -->
+    <div class="row justify-content-center"> <!-- Centrar el contenido -->
+        <div class="col-md-6"> <!-- Determina el ancho del contenido -->
 
-<h1>{{tarea.nombre}}</h1>
+            <!-- Tarjeta de Bootstrap -->
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center mb-4 card-title display-4 border-bottom pb-3">{{tarea.nombre}}</h1>
 
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>
-        Actualizar Tarea
-    </button>
-</form>
+                    <!-- Formulario de actualización -->
+                    <form method="post" class="mb-3">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button class="btn btn-primary btn-block">
+                            Actualizar Tarea
+                        </button>
+                    </form>
 
-<form action="{% url 'completar_tarea' tarea.id %}" method="POST">
-    {% csrf_token %}
-    <button>
-        Completar
-    </button>
+                    <!-- Formulario para completar tarea -->
+                    <form action="{% url 'completar_tarea' tarea.id %}" method="POST" class="mb-3">
+                        {% csrf_token %}
+                        <button class="btn btn-success btn-block">
+                            Completar
+                        </button>
+                    </form>
 
-<form action="{% url 'borrar_tarea' tarea.id %}" method="POST">
-    {% csrf_token %}
-    <button>
-        Borrar
-    </button>
+                    <!-- Formulario para borrar tarea -->
+                    <form action="{% url 'borrar_tarea' tarea.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-danger btn-block">
+                            Borrar
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- Fin de la tarjeta -->
 
-
-</form>
-
+        </div>
+    </div>
+</div>
 {% endblock %}

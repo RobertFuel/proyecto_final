@@ -44,7 +44,7 @@ def signin(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            if user.es_profesor:
+            if user.groups.filter(name='profesores').exists():
                 # Es profesor, redirigir a la página de crear tarea
                 login(request, user)
                 return redirect('crear_tarea')
@@ -57,4 +57,5 @@ def signin(request):
     else:
         form = AuthenticationForm()
         return render(request, 'usuarios/signin.html', {'form': form})
+
     
