@@ -4,6 +4,10 @@
 
 Multilingo es una aplicación web de una escuela de idiomas diseñada para el Proyecto Final de Playground.
 
+En este link puedes mirar la pagina funcionando
+
+https://www.youtube.com/watch?v=-M7_xBS74ko
+
 ## Resumen
 
 Multilingo es una plataforma que permite a los usuarios aprender diferentes idiomas. Admite tres idiomas principales: inglés, español y francés. Los usuarios pueden registrarse como estudiantes en estos idiomas y acceder a funciones específicas relacionadas con cada idioma.
