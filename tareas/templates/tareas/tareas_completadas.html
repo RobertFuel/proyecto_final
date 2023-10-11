@@ -8,9 +8,7 @@
             <h1 class="text-center mb-4 display-4 pb-1">Tareas Completadas</h1>
 
             {% for tarea in tareas %}
-            <!-- Tarjeta para cada tarea -->
-            <div class="card mb-3 shadow-sm"> <!-- Sombra agregada para un mejor efecto visual -->
-                <!-- Si la tarea es importante, cambia el color de fondo de la tarjeta -->
+            <div class="card mb-3 shadow-sm">
                 <div class="{% if tarea.importante %}bg-warning{% endif %} card-body">
                     <h4 class="card-title">
                         <a href="{% url 'detalle_tarea' tarea.id %}" class="text-dark">

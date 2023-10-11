@@ -17,12 +17,10 @@
                             <label for="{{ form.descripcion.id_for_label }}" class="form-label">{{ form.descripcion.label }}</label>
                             <textarea class="form-control" id="{{ form.descripcion.id_for_label }}" name="{{ form.descripcion.name }}"></textarea>
                         </div>
-                        <!-- Checkbox Importante -->
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="{{ form.importante.id_for_label }}" name="{{ form.importante.name }}" {% if form.importante.value %}checked{% endif %}>
                             <label class="form-check-label" for="{{ form.importante.id_for_label }}">{{ form.importante.label }}</label>
                         </div>
-                        <!-- Dropdown Curso -->
                         <div class="mb-3">
                             <label for="{{ form.curso.id_for_label }}" class="form-label">{{ form.curso.label }}</label>
                             <select class="form-select" id="{{ form.curso.id_for_label }}" name="{{ form.curso.name }}">
