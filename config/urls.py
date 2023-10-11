@@ -22,6 +22,7 @@ from usuarios import views as usuarios_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', tareas_views.home, name='home'),
+    path('about/', tareas_views.about_view, name='about'),
     path('usuarios/signup/', usuarios_views.signup, name='signup'),
     path('usuarios/logout/', usuarios_views.logout_view, name='logout'),
     path('usuarios/signin/', usuarios_views.signin, name='signin'),

@@ -20,6 +20,9 @@ def obtener_curso_de_usuario(username):
 def home(request):
     return render(request, 'tareas/home.html')
 
+def about_view(request):
+    return render(request, 'tareas/about.html')
+
 def es_profesor(user):
     return user.groups.filter(name='profesores').exists()
 
